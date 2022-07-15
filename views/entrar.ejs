@@ -1,0 +1,30 @@
+<%- include('includes/header'); -%>
+
+<% if (!email) { %>
+<h1><%= title; %></h1>
+<p>Crie ou entre na sua conta abaixo:</p>
+
+<div class="form-div">
+    <form action="/entrar/registrar" method="post" class="form">
+        <h3>Registrar</h3>
+        <label for="registrar-email">E-mail:</label>
+        <input type="email" name="email" id="registrar-email" required>
+        <label for="registrar-password">Senha:</label>
+        <input type="password" name="password" id="registrar-password" required>
+        <button type="submit">>></button>
+    </form>
+    <form action="/entrar/logar" method="post" class="form">
+        <h3>Logar</h3>
+        <label for="logar-email">E-mail:</label>
+        <input type="email" name="email" id="logar-email" required>
+        <label for="logar-password">Senha:</label>
+        <input type="password" name="password" id="logar-password" required>
+        <button type="submit">>></button>
+    </form>
+</div>
+<% } else { %>
+<h1>Ei, espertinho!</h1>
+<p>Antes de criar ou entrar em uma conta, saia da sua primeiro!</p>
+<% } %>
+
+<%- include('includes/footer'); -%>

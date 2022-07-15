@@ -1,0 +1,111 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+input {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.navbar,
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    max-width: 100%;
+}
+
+.form input {
+    margin-bottom: 16px;
+}
+
+.form button {
+    align-self: flex-end;
+    width: fit-content;
+}
+
+.form .buttons {
+    text-align: right;
+}
+
+.messages {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.messages p {
+    background-color: white;
+    color: black;
+    padding: 4px 8px;
+    width: fit-content;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+.contact {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact:hover,
+.contact-edit {
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 1px white;
+    user-select: none;
+}
+
+.contact img {
+    height: 92px;
+    border-radius: 4px;
+}
+
+.contact p {
+    margin: 0px 8px 8px 16px;
+}
+
+.pic-placeholder {
+    width: 92px;
+    height: 92px;
+
+    font-size: 5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pic-placeholder p {
+    margin: 0px;
+}

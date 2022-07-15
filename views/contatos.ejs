@@ -1,0 +1,29 @@
+<%- include('includes/header'); -%>
+
+<h1><%= title; %></h1>
+<p>Crie ou edite seus contatos abaixo:</p>
+
+<% if (contacts) { %>
+<%- include('includes/contacts'); -%>
+<% } %>
+
+<div class="form-div">
+    <form action="/contatos/criar" method="post" enctype="multipart/form-data" class="form">
+        <h3>Novo contato</h3>
+        <label for="criar-pic">Foto:</label>
+        <input type="file" name="pic" id="criar-pic" accept="pic/*">
+        <label for="criar-name">Nome:</label>
+        <input type="text" name="name" id="criar-name" required>
+        <label for="criar-email">E-mail:</label>
+        <input type="email" name="email" id="criar-email" required>
+        <div class="buttons">
+            <button type="submit">Criar</button>
+        </div>
+    </form>
+</div>
+
+<% if (contacts) { %>
+<script src="/javascripts/contatos.js"></script>
+<% } %>
+
+<%- include('includes/footer'); -%>

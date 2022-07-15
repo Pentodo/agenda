@@ -1,0 +1,22 @@
+<div class="contacts">
+    <% contacts.map(contact => { %>
+    <div class="contact">
+        <% if (contact.pic) { %>
+        <img src="data:image/*;base64,<%= contact.pic  %>" alt="Foto">
+        <% } else { %>
+        <div class="pic-placeholder">
+            <% if (title == 'Contatos') { %>
+            <p>+</p>
+            <% } else { %>
+            <p>?</p>
+            <% } %>
+        </div>
+        <% } %>
+
+        <div class="content">
+            <p><%= contact.name %></p>
+            <p><%= contact.email %></p>
+        </div>
+    </div>
+    <% }); %>
+</div>
