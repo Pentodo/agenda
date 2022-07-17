@@ -24,7 +24,7 @@ controller.logar = function (req, res, next) {
 
 controller.sair = async function (req, res, next) {
     delete req.session.email;
-    await req.flash('messages', !req.session.email ? 'Você saiu!' : 'Não foi possível sair!');
+    req.flash('messages', !req.session.email ? 'Você saiu!' : 'Não foi possível sair!');
 
     next();
 }
@@ -33,10 +33,10 @@ controller.logSession = async function (req, res, next) {
     if (req.user) {
         if (!req.user.errors.length) {
             req.session.email = req.user.body.email;
-            await req.flash('messages', 'Você entrou!');
+            req.flash('messages', 'Você entrou!');
         }
         else {
-            await Promise.all(req.user.errors.map(error => req.flash('messages', error)));
+            req.user.errors.map(error => req.flash('messages', error));
         }
     }
 
