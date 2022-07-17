@@ -76,6 +76,7 @@ button {
 .contact {
     display: flex;
     flex-direction: row;
+    user-select: none;
 }
 
 .contact:hover,
@@ -85,7 +86,6 @@ button {
     color: black;
     border-radius: 4px;
     box-shadow: 0px 0px 0px 1px white;
-    user-select: none;
 }
 
 .contact img {
