@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo');
-var { flash } = require('express-flash-message');
+var flash = require('connect-flash');
 
 global.__rootdir = path.resolve(__dirname);
 require('dotenv').config();
@@ -17,7 +17,6 @@ var contatosRouter = require('./routes/contatos');
 
 var app = express();
 
-// mongodb setup
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(session({
@@ -28,13 +27,14 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 }
 }));
 
-// flash messages
-app.use(flash({ sessionKeyName: 'flashMessage' }));
+app.use(flash());
 
-// session locals
 app.use(async (req, res, next) => {
-  res.locals.messages = await req.consumeFlash('messages');
-  res.locals.email = req.session.email;
+  if (req.session?.email) {
+    res.locals.messages = req.flash('messages');
+    res.locals.email = req.session.email;
+  }
+
   next();
 });
 
