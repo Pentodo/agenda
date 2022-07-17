@@ -30,11 +30,8 @@ app.use(session({
 app.use(flash());
 
 app.use(async (req, res, next) => {
-  if (req.session?.email) {
-    res.locals.messages = req.flash('messages');
-    res.locals.email = req.session.email;
-  }
-
+  res.locals.messages = await req.consumeFlash('messages');
+  res.locals.email = req.session.email;
   next();
 });
 
