@@ -11,7 +11,7 @@ controller.criar = async function (req, res, next) {
     const contact = new Contato(req.body, req.file, req.session);
 
     await contact.create();
-    await req.flash('messages', contact?.errors || 'Contato cadastrado!');
+    await req.flash('messages', contact?.errors || 'Contato cadastrado com sucesso!');
 
     res.redirect('back');
 }
