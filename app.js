@@ -33,8 +33,8 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 // session locals
 app.use(async (req, res, next) => {
-  res.locals.messages = await req.consumeFlash('messages');
   res.locals.email = req.session.email;
+  res.locals.messages = req.session.flashMessage ? await req.consumeFlash('messages') : [];
   next();
 });
 
