@@ -8,7 +8,6 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo');
 var { flash } = require('express-flash-message');
 
-global.__rootdir = path.resolve(__dirname);
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');

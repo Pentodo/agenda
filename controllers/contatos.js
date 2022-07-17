@@ -22,7 +22,7 @@ controller.carregar = async function (req, res, next) {
     res.locals.contacts = await Promise.all(contacts.map(async contact => {
         if (contact.pic) {
             try {
-                contact.pic = (await fs.readFile(path.join(__rootdir, contact.pic))).toString('base64');
+                contact.pic = (await fs.readFile(contact.pic)).toString('base64');
             }
             catch {
                 contact.pic = undefined;

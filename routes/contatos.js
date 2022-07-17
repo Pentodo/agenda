@@ -1,11 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var fs = require('fs');
-var path = require('path');
-
-fs.mkdirSync(path.join(__rootdir, 'uploads/'), { recursive: true });
-
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 

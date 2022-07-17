@@ -43,7 +43,7 @@ class Contato {
             update.pic = this.file.path;
 
             if (model.pic) {
-                fs.unlink(path.join(__rootdir, model.pic));
+                fs.unlink(path.join(model.pic));
             }
         }
 
@@ -52,7 +52,7 @@ class Contato {
 
     delete = () => Promise.resolve(this?.model || this.load()).then(model => {
         if (model.pic) {
-            fs.unlink(path.join(__rootdir, model.pic));
+            fs.unlink(path.join(model.pic));
         }
 
         return this.model = model.deleteOne();
