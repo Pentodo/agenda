@@ -118,10 +118,6 @@ button {
         width: 100%;
     }
 
-    .contact {
-        -webkit-tap-highlight-color: transparent;
-    }
-
     .contact p {
         overflow-wrap: anywhere;
     }
