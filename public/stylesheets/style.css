@@ -95,7 +95,6 @@ button {
 
 .contact p {
     margin: 0px 8px 8px 16px;
-    overflow-wrap: anywhere;
 }
 
 .pic-placeholder {
@@ -117,5 +116,9 @@ button {
     .contact,
     .form {
         width: 100%;
+    }
+
+    .contact p {
+        overflow-wrap: anywhere;
     }
 }
