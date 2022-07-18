@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 var fs = require('fs/promises');
-var path = require('path');
-const { throws } = require('assert');
 
 const ContatoSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -23,7 +21,7 @@ class Contato {
 
     create = () => Promise.resolve(this?.model || this.load()).then(model => {
         if (model) {
-            this.throwError('E-mail de contato já cadastrado!');
+            this.pushError('E-mail de contato já cadastrado!');
         }
         else {
             model = ContatoModel.create({
@@ -40,10 +38,10 @@ class Contato {
         const update = { name: this.body.name };
 
         if (this.file?.path) {
-            update.pic = this.file.path;
+            update.pic = this.file?.path;
 
             if (model.pic) {
-                fs.unlink(path.join(model.pic));
+                fs.unlink(model.pic);
             }
         }
 
@@ -52,13 +50,13 @@ class Contato {
 
     delete = () => Promise.resolve(this?.model || this.load()).then(model => {
         if (model.pic) {
-            fs.unlink(path.join(model.pic));
+            fs.unlink(model.pic);
         }
 
         return this.model = model.deleteOne();
     });
 
-    throwError = (error) => {
+    pushError = error => {
         if (this.errors)  {
             this.errors.push(error);
         }

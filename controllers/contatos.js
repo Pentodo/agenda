@@ -16,23 +16,11 @@ controller.criar = async function (req, res, next) {
     res.redirect('back');
 }
 
-controller.carregar = async function (req, res, next) {
-    const contacts = await Contato.load(req.session.email);
-
-    res.locals.contacts = await Promise.all(contacts.map(async contact => {
-        if (contact.pic) {
-            try {
-                contact.pic = (await fs.readFile(contact.pic)).toString('base64');
-            }
-            catch {
-                contact.pic = undefined;
-            }
-        }
-
-        return contact;
-    }));
-
-    next();
+controller.carregar = function (req, res, next) {
+    Contato.load(req.session.email).then(contacts => {
+        res.locals.contacts = contacts;
+        next();
+    });
 }
 
 controller.editar = function (req, res, next) {
