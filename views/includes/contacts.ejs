@@ -2,7 +2,7 @@
     <% contacts.map(contact => { %>
     <div class="contact">
         <% if (contact.pic) { %>
-        <img src="<%= contact.pic.replace('public\\', '')  %>" alt="Foto">
+        <img src="<%= contact.pic  %>" alt="Foto">
         <% } else { %>
         <div class="pic-placeholder">
             <% if (title == 'Contatos') { %>
