@@ -19,7 +19,7 @@ controller.criar = async function (req, res, next) {
 controller.carregar = function (req, res, next) {
     Contato.load(req.session.email).then(contacts => {
         res.locals.contacts = contacts.map(contact => {
-            contact.pic = contact.pic ? path.normalize(contact.pic.replace('public\\', '')) : undefined;
+            contact.pic = contact.pic ? path.normalize(contact.pic.replace('public', '')) : undefined;
             return contact;
         });
         next();
