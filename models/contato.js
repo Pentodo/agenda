@@ -19,7 +19,7 @@ class Contato {
 
     static load = (createdBy) => ContatoModel.find({ createdBy });
 
-    create = () => Promise.resolve(this?.model || this.load()).then(model => {
+    create = () => this.load().then(model => {
         if (model) {
             this.pushError('E-mail de contato já cadastrado!');
         }
@@ -29,12 +29,12 @@ class Contato {
             });
         };
 
-        return model;
+        return this.model = model;
     });
 
-    load = () => this.model = this?.model || ContatoModel.findOne({ email: this.body.email, createdBy: this.session.email });
+    load = () => this.model = Promise.resolve(this?.model || ContatoModel.findOne({ email: this.body.email, createdBy: this.session.email }));
 
-    update = () => Promise.resolve(this?.model || this.load()).then(model => {
+    update = () => this.load().then(model => {
         const update = { name: this.body.name };
 
         if (this.file?.path) {
@@ -48,7 +48,7 @@ class Contato {
         return this.model = model.updateOne(update);
     });
 
-    delete = () => Promise.resolve(this?.model || this.load()).then(model => {
+    delete = () => this.load().then(model => {
         if (model.pic) {
             fs.unlink(model.pic);
         }

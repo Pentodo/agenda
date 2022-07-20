@@ -7,7 +7,7 @@ controller.index = (req, res, next) => res.render('entrar', { title: 'Entrar' })
 controller.registrar = function (req, res, next) {
     const user = new Usuario(req.body);
 
-    user.register().then(() => {
+    user.create().then(() => {
         req.user = user;
         next();
     });
@@ -16,7 +16,7 @@ controller.registrar = function (req, res, next) {
 controller.logar = function (req, res, next) {
     const user = new Usuario(req.body);
 
-    user.loginCheck().then(() => {
+    user.load().then(() => {
         req.user = user;
         next();
     });
@@ -31,7 +31,7 @@ controller.sair = async function (req, res, next) {
 
 controller.logSession = async function (req, res, next) {
     if (req.user) {
-        if (!req.user.errors.length) {
+        if (!req.user.errors) {
             req.session.email = req.user.body.email;
             await req.flash('messages', 'Você entrou!');
         }
@@ -40,7 +40,7 @@ controller.logSession = async function (req, res, next) {
         }
     }
 
-    req.session.save(() => res.redirect(req.user && req.user.errors.length ? 'back' : '/'));
+    req.session.save(() => res.redirect(req.user?.errors ? 'back' : '/'));
 }
 
 module.exports = controller;
