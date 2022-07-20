@@ -33,7 +33,7 @@ forms.forEach(form => {
                     messageDiv.append(message);
                 }
                 else {
-                    exist.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16);
+                    exist.style.backgroundColor = `hsl(${358 * Math.random() | 0}, 100%, 50%)`;
                 }
             });
 
