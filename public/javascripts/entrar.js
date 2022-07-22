@@ -19,7 +19,7 @@ forms.forEach(form => {
             errors.map(error => {
                 let exist;
                 document.querySelectorAll('.messages > p').forEach(message => {
-                    if (message.innerHTML = error) {
+                    if (message.innerHTML == error) {
                         exist = message;
                     }
                 });
